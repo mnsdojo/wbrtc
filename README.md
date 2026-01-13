@@ -1,93 +1,52 @@
-# P2P Swift
+# wbrtc
 
-> ⚡ Fast, direct, and secure browser-to-browser file transfers using WebRTC
+Send files directly between browsers. No upload, no cloud storage, just peer-to-peer.
 
-P2P Swift enables direct file transfers between two browsers without uploading to a server. Files are transferred peer-to-peer using WebRTC data channels.
+Built with Bun + WebRTC.
 
-## Features
+## What is this?
 
-- 🚀 **Direct P2P Transfer** - No server upload, files go directly between browsers
-- 🔒 **End-to-End Encrypted** - WebRTC provides encryption by default
-- 📦 **No File Size Limit** - Transfer files of any size
-- 🌐 **Works in Browser** - No installation required
-- ⚡ **Built with Bun** - Ultra-fast server runtime
+A simple file transfer app that connects two browsers and lets them send files directly to each other. The server only handles the initial "handshake" (signaling) - after that, data flows directly between peers.
 
-## Quick Start
-
-### Prerequisites
-
-- [Bun](https://bun.sh/) v1.0 or higher
-
-### Installation
+## Run it locally
 
 ```bash
-# Clone the repository
-git clone https://github.com/mnsdojo/wbrtc.git
-cd wbrtc/server
-
-# Install dependencies
+cd server
 bun install
-```
-
-### Development
-
-```bash
-# Run with hot reload
 bun run dev
 ```
 
-### Production
+Open `http://localhost:3000` in two browser tabs. That's it.
+
+## Deploy
+
+Push to GitHub, connect to Render, done. There's a `Dockerfile` and `render.yaml` ready to go.
+
+Or run it anywhere that supports Docker:
 
 ```bash
-# Start the server
-bun run start
+docker build -t wbrtc .
+docker run -p 3000:3000 wbrtc
 ```
 
-The app will be available at `http://localhost:3000`
-
-## Available Scripts
-
-| Script | Description |
-|--------|-------------|
-| `bun run dev` | Start development server with hot reload |
-| `bun run start` | Start production server |
-| `bun run build` | Build for production |
-| `bun run typecheck` | Run TypeScript type checking |
-
-## Deployment
-
-### Railway
+## Scripts
 
 ```bash
-railway login
-railway init
-railway up
+bun run dev      # dev server with hot reload
+bun run start    # production
+bun run build    # compile to dist/
 ```
 
-### Other Platforms
+## How it works
 
-The server can be deployed to any platform that supports Bun or Node.js:
-- Render
-- Fly.io
-- DigitalOcean App Platform
-- Vercel (with Bun runtime)
+1. Two clients connect to the signaling server via WebSocket
+2. Server pairs them and assigns WebRTC roles
+3. Clients establish a direct P2P connection
+4. Files transfer browser-to-browser, server doesn't see them
 
-Set the `PORT` environment variable if required by your platform.
+## Stack
 
-## How It Works
-
-1. Two clients connect to the signaling server
-2. Server assigns roles (polite/impolite) for WebRTC negotiation
-3. Clients establish a direct P2P connection via WebRTC
-4. Files are transferred directly between browsers
-
-## Tech Stack
-
-- **Runtime**: [Bun](https://bun.sh/)
-- **Signaling**: WebSocket
-- **P2P**: WebRTC Data Channels
-- **Frontend**: Vanilla JS, CSS
-
-## License
-
-MIT
+- Bun (server runtime)
+- WebSocket (signaling)
+- WebRTC Data Channels (file transfer)
+- Vanilla JS frontend
