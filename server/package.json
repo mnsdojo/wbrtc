@@ -1,12 +1,23 @@
 {
-  "name": "server",
+  "name": "p2p-swift",
+  "version": "1.0.0",
+  "description": "P2P file transfer using WebRTC - fast, direct, and secure browser-to-browser transfers",
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun run --watch index.ts",
+    "start": "bun run index.ts",
+    "build": "bun build index.ts --outdir ./dist --target node",
+    "typecheck": "tsc --noEmit"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
