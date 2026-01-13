@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2P Swift v4.0 | Ultra-Fast Transfers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="blob-container">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <main class="app-container">
+    <header class="hero">
+      <div class="logo">
+        <i class="fas fa-bolt-lightning"></i>
+        <span>P2P SWIFT</span>
+      </div>
+      <h1>Fast, Direct, Secure.</h1>
+      <p class="subtitle">Transfer unlimited data directly between browsers.</p>
+    </header>
+
+    <section class="card signaling-card">
+      <div id="status" class="status-indicator">
+        <span class="pulse"></span>
+        <span class="status-text">Connecting to server...</span>
+      </div>
+    </section>
+
+    <section id="dropZone" class="card drop-zone">
+      <div class="drop-zone-content">
+        <div class="icon-stack">
+          <i class="fas fa-file-arrow-up"></i>
+        </div>
+        <h3>Drop files here</h3>
+        <p>or click to browse from device</p>
+        <input type="file" id="fileInput" multiple hidden>
+      </div>
+    </section>
+
+    <section id="transferSection" class="card transfer-card" style="display: none;">
+      <div id="fileList" class="file-list"></div>
+
+      <div id="progressArea" class="progress-area" style="display: none;">
+        <div class="progress-info">
+          <span id="currentFileName">Filename.zip</span>
+          <span id="percentDone">0%</span>
+        </div>
+        <div class="progress-track">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <div class="progress-stats">
+          <span id="transferSpeed">0 MB/s</span>
+          <span id="totalStats">0 of 0 MB</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="clearBtn" class="btn btn-secondary">Clear All</button>
+        <button id="sendBtn" class="btn btn-primary" disabled>
+          <i class="fas fa-paper-plane"></i>
+          <span>Send File</span>
+        </button>
+      </div>
+    </section>
+
+    <footer class="legal">
+      <p>End-to-End Encrypted &bull; No Server Storage &bull; P2P Swift v4.0</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
